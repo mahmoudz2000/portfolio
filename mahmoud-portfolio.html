@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahmoud Zangri | Cloud & DevOps</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0e17;
+    --surface: #111827;
+    --border: rgba(255,255,255,0.07);
+    --accent: #3b82f6;
+    --accent2: #06b6d4;
+    --text: #f1f5f9;
+    --muted: #64748b;
+    --green: #10b981;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .avatar::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    z-index: -1;
+    opacity: 0.3;
+    filter: blur(8px);
+  }
+
+  .status-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--green);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    border: 2px solid var(--bg);
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+  }
+
+  .header-text h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+
+  .header-text h1 span {
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-text p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .section {
+    margin-bottom: 36px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .section:nth-child(2) { animation-delay: 0.1s; }
+  .section:nth-child(3) { animation-delay: 0.2s; }
+  .section:nth-child(4) { animation-delay: 0.3s; }
+  .section:nth-child(5) { animation-delay: 0.4s; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .about-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #94a3b8;
+    border-left: 2px solid var(--accent);
+    padding-left: 16px;
+  }
+
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: #94a3b8;
+    transition: all 0.2s;
+  }
+
+  .skill-tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(59,130,246,0.08);
+  }
+
+  .skill-tag.highlight {
+    border-color: rgba(59,130,246,0.4);
+    color: var(--accent);
+    background: rgba(59,130,246,0.08);
+  }
+
+  .projects-grid {
+    display: grid;
+    gap: 12px;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    transition: all 0.25s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .project-card:hover {
+    border-color: rgba(59,130,246,0.3);
+    transform: translateY(-2px);
+  }
+
+  .project-card:hover::before { opacity: 1; }
+
+  .project-name {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .project-lang {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: rgba(59,130,246,0.12);
+    color: var(--accent2);
+    border: 1px solid rgba(6,182,212,0.2);
+  }
+
+  .project-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .stat-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 26px;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .github-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.2s;
+  }
+
+  .github-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(59,130,246,0.35);
+  }
+
+  .open-work-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: 1px solid rgba(16,185,129,0.35);
+    background: rgba(16,185,129,0.08);
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--green);
+  }
+
+  .cta-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="avatar">
+      MZ
+      <div class="status-dot"></div>
+    </div>
+    <div class="header-text">
+      <h1>Mahmoud <span>Zangri</span></h1>
+      <p>// CS Student → Cloud & DevOps Engineer</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">about</div>
+    <p class="about-text">
+      Third-year Computer Science student at the Open University of Israel, based in Haifa.
+      Building toward a Cloud &amp; DevOps career — working with Linux, Docker, Python, and AWS.
+      I love solving infrastructure problems and building things that actually run in production.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">overview</div>
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-number">3rd</div>
+        <div class="stat-label">year CS student</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">3+</div>
+        <div class="stat-label">projects shipped</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">6mo</div>
+        <div class="stat-label">to job-ready</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">skills</div>
+    <div class="skills-grid">
+      <span class="skill-tag highlight">Linux</span>
+      <span class="skill-tag highlight">Docker</span>
+      <span class="skill-tag highlight">AWS</span>
+      <span class="skill-tag highlight">Python</span>
+      <span class="skill-tag">Git</span>
+      <span class="skill-tag">C</span>
+      <span class="skill-tag">Java</span>
+      <span class="skill-tag">GitHub Actions</span>
+      <span class="skill-tag">Data Structures</span>
+      <span class="skill-tag">Claude Code</span>
+      <span class="skill-tag">Cursor</span>
+      <span class="skill-tag">GitHub Copilot</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">projects</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-name">
+          Full Assembler
+          <span class="project-lang">C</span>
+        </div>
+        <div class="project-desc">Two-pass assembler built in C. Handles symbol tables, binary encoding, and file I/O — core systems programming project.</div>
+      </div>
+      <div class="project-card">
+        <div class="project-name">
+          NASA Asteroid Data Analysis
+          <span class="project-lang">Python</span>
+        </div>
+        <div class="project-desc">Analyzed real NASA asteroid datasets using Python. Applied filtering, aggregation, and visualization to extract insights from large datasets.</div>
+      </div>
+      <div class="project-card">
+        <div class="project-name">
+          Matrix Management System
+          <span class="project-lang">Python</span>
+        </div>
+        <div class="project-desc">OOP-based system for matrix operations — addition, multiplication, transposition — built with clean object-oriented design.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">connect</div>
+    <div class="cta-row">
+      <a href="https://github.com/mahmoudz2000" target="_blank" class="github-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        github.com/mahmoudz2000
+      </a>
+      <div class="open-work-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#10b981"/></svg>
+        Open to work
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
