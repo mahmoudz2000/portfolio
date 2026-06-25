@@ -264,6 +264,7 @@ footer a { color:var(--muted); } footer a:hover { color:var(--ink); }
   .featured-panel { display:none; }
   .skills-grid { grid-template-columns:1fr; }
   .contact-card { padding:36px 20px; }
+  .certs-grid { grid-template-columns: 1fr !important; }
 }
 </style>
 </head>
@@ -272,6 +273,7 @@ footer a { color:var(--muted); } footer a:hover { color:var(--ink); }
 <div class="mobile-menu" id="mobileMenu">
   <a href="#projects" onclick="closeMobile()">Projects</a>
   <a href="#skills" onclick="closeMobile()">Skills</a>
+  <a href="#certifications" onclick="closeMobile()">Certifications</a>
   <a href="#experience" onclick="closeMobile()">Experience</a>
   <a href="#contact" onclick="closeMobile()">Contact</a>
   <a href="https://github.com/mahmoudz2000" target="_blank" style="color:var(--accent)">GitHub ↗</a>
@@ -282,6 +284,7 @@ footer a { color:var(--muted); } footer a:hover { color:var(--ink); }
   <ul>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certs</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -503,6 +506,46 @@ footer a { color:var(--muted); } footer a:hover { color:var(--ink); }
 
 <hr class="divider">
 
+<!-- ── CERTIFICATIONS ── -->
+<section class="section" id="certifications">
+  <div class="section-head fade-up">
+    <div class="section-label">Certifications</div>
+    <h2>Credentials</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;" class="certs-grid">
+
+    <div class="pcard fade-up" style="flex-direction:row;align-items:center;gap:16px;">
+      <div style="font-size:32px;flex-shrink:0;">☁️</div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">AWS · Earned</div>
+        <div style="font-size:14px;font-weight:700;color:var(--ink);">AWS Certified Cloud Practitioner</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:3px;">CLF-C02</div>
+      </div>
+    </div>
+
+    <div class="pcard fade-up" style="flex-direction:row;align-items:center;gap:16px;">
+      <div style="font-size:32px;flex-shrink:0;">🌐</div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--yellow);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Cisco · In Progress</div>
+        <div style="font-size:14px;font-weight:700;color:var(--ink);">CCNA</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:3px;">Cisco Certified Network Associate</div>
+      </div>
+    </div>
+
+    <div class="pcard fade-up" style="flex-direction:row;align-items:center;gap:16px;">
+      <div style="font-size:32px;flex-shrink:0;">💻</div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">OPCODE · Completed</div>
+        <div style="font-size:14px;font-weight:700;color:var(--ink);">OPCODE Developer Training</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:3px;">Full-stack collaborative program</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
 <!-- ── EXPERIENCE ── -->
 <section class="section" id="experience">
   <div class="section-head fade-up">
@@ -519,6 +562,16 @@ footer a { color:var(--muted); } footer a:hover { color:var(--ink); }
         <li>Diagnose connectivity faults and guide customers through resolution steps</li>
         <li>Work hands-on with routers, modems, and cable network infrastructure</li>
         <li>Support in Hebrew, Arabic, and English in high-volume queues</li>
+      </ul>
+    </div>
+    <div class="tl-item fade-up">
+      <div class="tl-date">2024 — 2025</div>
+      <h3>OPCODE Developer Training Program</h3>
+      <div class="tl-where">OPCODE <span class="sep">·</span> Collaborative Dev Program</div>
+      <ul class="tl-list">
+        <li>Collaborative full-stack development training with a team of developers</li>
+        <li>Built NextStep — a full Kanban job-tracking app — as a team project</li>
+        <li>Practiced Git workflows, code review, and agile-style collaboration</li>
       </ul>
     </div>
     <div class="tl-item fade-up">
